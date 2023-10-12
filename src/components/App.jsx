@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { ImageDetailsPage } from './ImageDetailsPage';
 import { searchArtworks } from '../api';
 import { SearchForm } from './SearchForm';
 import { Footer } from './Footer';
@@ -7,7 +8,8 @@ import { Footer } from './Footer';
 import './App.css';
 
 export function App() {
-	const [artwork, setArtwork] = useState([]);
+	const [artworks, setArtworks] = useState([]);
+	const [selectedArtwork, setSelectedArtwork] = useState(null);
 
 	function onSearchSubmit(query) {
 		// Search for the users's query.
@@ -17,23 +19,44 @@ export function App() {
 		// our UI, we need to make real requests!
 		// @see: ./src/api.js
 		searchArtworks(query).then((json) => {
-			console.log('data', json.data);
-			setArtwork(json.data);
+			setArtworks(json.data);
 		});
 	}
 
+	const handleArtworkSelection = (e) => {
+		const result = artworks.find(({ title }) => title === e.target.value);
+		setSelectedArtwork(result);
+	};
+
 	return (
 		<div className="App">
-			<h1>TCL Career Lab Art Finder</h1>
-			<SearchForm onSearchSubmit={onSearchSubmit} />
-			{artwork.map((art, idx) => (
-				<ul key={idx}>
-					<li>
-						{art.title}, {art.artist_title}
-					</li>
-				</ul>
-			))}
-			<Footer />
+			{!selectedArtwork ? (
+				<>
+					<h1>TCL Career Lab Art Finder</h1>
+					<SearchForm onSearchSubmit={onSearchSubmit} />
+					{artworks.map((art, idx) => (
+						<ul key={idx}>
+							<li>
+								<button
+									className="artwork-selection-button"
+									value={art.title}
+									onClick={handleArtworkSelection}
+								>
+									{art.title} by {art.artist_title}
+								</button>
+							</li>
+						</ul>
+					))}
+					<Footer />
+				</>
+			) : (
+				<ImageDetailsPage
+					artist_title={selectedArtwork.artist_title}
+					image={selectedArtwork.image_id}
+					setSelectedArtwork={setSelectedArtwork}
+					title={selectedArtwork.title}
+				/>
+			)}
 		</div>
 	);
 }
