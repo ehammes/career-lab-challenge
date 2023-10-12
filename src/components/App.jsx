@@ -20,6 +20,7 @@ export function App() {
 		// @see: ./src/api.js
 		searchArtworks(query).then((json) => {
 			setArtworks(json.data);
+			console.log(json.data);
 		});
 	}
 
@@ -42,7 +43,8 @@ export function App() {
 									value={art.title}
 									onClick={handleArtworkSelection}
 								>
-									{art.title} by {art.artist_title}
+									{art.title}
+									{art.artist_title && <> by {art.artist_title}</>}
 								</button>
 							</li>
 						</ul>

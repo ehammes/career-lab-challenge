@@ -6,6 +6,9 @@ export const ImageDetailsPage = ({
 	title,
 	setSelectedArtwork,
 }) => {
+	// Props based on selected artwork
+	// Reset setSelectedArtwork state to return back to search results
+
 	return (
 		<>
 			<div className="heading">
