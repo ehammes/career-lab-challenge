@@ -4,6 +4,9 @@
 
 html {
 	font-size: 62.5%;
+	background-color: white;
+	color: black;
+	font-weight: bold;
 }
 
 body {
@@ -25,6 +28,11 @@ input {
 
 pre,
 code {
-	font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+	font-family:
+		Menlo,
+		Consolas,
+		Monaco,
+		Liberation Mono,
+		Lucida Console,
 		monospace;
 }

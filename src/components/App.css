@@ -10,3 +10,12 @@
 .App > h1 {
 	text-align: center;
 }
+
+.artwork-selection-button {
+	background: white;
+	color: black;
+	border: none;
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}

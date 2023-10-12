@@ -18,9 +18,15 @@
 
 .Form .button {
 	margin-top: 0.25em;
+	background-color: black;
+	font-weight: bold;
+	border-radius: 5px;
 }
 
 .Form .input {
 	border: 1px solid var(--color-border);
-	border-radius: 0;
+	border-radius: 5px;
+	text-align: center;
+	background-color: white;
+	color: black;
 }
