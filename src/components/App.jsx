@@ -8,22 +8,19 @@ import { Footer } from './Footer';
 import './App.css';
 
 export function App() {
+	// Set artwork search results
 	const [artworks, setArtworks] = useState([]);
+	// Set selected artwork
 	const [selectedArtwork, setSelectedArtwork] = useState(null);
 
+	// Fetch data results from API based on search query
 	function onSearchSubmit(query) {
-		// Search for the users's query.
-		// TODO: render the results, instead of logging them to the console.
-		// NOTE: `searchArtworks` currently returns local data, so that we
-		// don't make too many requests to the API! Once we've built out
-		// our UI, we need to make real requests!
-		// @see: ./src/api.js
 		searchArtworks(query).then((json) => {
 			setArtworks(json.data);
-			console.log(json.data);
 		});
 	}
 
+	// Find matching artwork object based on user's artwork selection in artwork list and set as state
 	const handleArtworkSelection = (e) => {
 		const result = artworks.find(({ title }) => title === e.target.value);
 		setSelectedArtwork(result);
