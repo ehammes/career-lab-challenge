@@ -52,8 +52,12 @@ export function searchArtworks(query) {
 	const headers = { Accept: 'application/json' };
 
 	return fetch(requestUrl, { headers }).then((res) => {
-		if (res.ok) {
-			return res.json();
+		try {
+			if (res.ok) {
+				return res.json();
+			}
+		} catch (error) {
+			console.log(error.message);
 		}
 	});
 }
